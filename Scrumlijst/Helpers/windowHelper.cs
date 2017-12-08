@@ -39,23 +39,5 @@ namespace Scrumlijst.Helpers
             MessageBoxImage icon = MessageBoxImage.Question;
             MessageBox.Show(messageBoxText, caption, button, icon);
         }
-
-        public bool DeleteConfirmation()
-        {
-            string messageBoxText = "Are you sure you want to delete the selected item?";
-            string caption = "Delete Confirmation";
-            MessageBoxButton button = MessageBoxButton.YesNo;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxOptions option = MessageBoxOptions.RightAlign;
-            MessageBoxResult result = MessageBoxResult.No;
-            MessageBoxResult endResult = MessageBox.Show(messageBoxText, caption, button, icon, result, option);
-
-            if(endResult == MessageBoxResult.Yes)
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }

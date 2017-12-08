@@ -44,6 +44,7 @@ namespace Scrumlijst.Windows
                 ErrorMessages.Add("TargetSite:\t" + eventArgs.Exception.TargetSite + "\n");
                 ErrorMessages.Add("Data.Values:\t" + eventArgs.Exception.Data.Values.ToString() + "\n");
                 ErrorMessages.Add("Helplink:\t" + eventArgs.Exception.HelpLink + "\n");
+                ErrorMessages.Add("StackTrace:\t" + eventArgs.Exception.StackTrace + "\n");
                 ErrorMessages.Add("Message:\t" + eventArgs.Exception.Message + "\n");
                 
                 System.IO.File.AppendAllLines(@"log.txt", ErrorMessages);
@@ -111,10 +112,7 @@ namespace Scrumlijst.Windows
 
         private void btnTasksDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (window.DeleteConfirmation())
-            {
-                source.deleteTask(selectedTask);
-            }
+            source.deleteTask(selectedTask);      
         }
 
         private void btnSprintsNew_Click(object sender, RoutedEventArgs e)
@@ -144,11 +142,7 @@ namespace Scrumlijst.Windows
 
         private void btnSprintsDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (window.DeleteConfirmation())
-            {
-                source.deleteSprint(selectedSprint);
-            }
-            
+            source.deleteSprint(selectedSprint);   
         }
 
         #endregion

@@ -18,8 +18,7 @@
               ItemsSource="{Binding Tasks}"
               SelectedItem="{Binding SelectedTaskModel}"
               IsReadOnly="True"
-              AutoGenerateColumns="false" 
-              
+              AutoGenerateColumns="false"
               SelectedIndex="0" BorderThickness="0" VerticalGridLinesBrush="Gray" HorizontalGridLinesBrush="Gray">
             
             <DataGrid.Columns>
@@ -35,9 +34,10 @@
             </DataGrid.Columns>
             <DataGrid.InputBindings>
                 <MouseBinding Gesture="LeftDoubleClick" Command="{Binding doubleClickCommand}"/>
+                <KeyBinding Key="Delete" Command="{Binding deleteTaskCommand}"/>
             </DataGrid.InputBindings>
         </DataGrid>
-        <DockPanel Grid.Column="1">
+        <DockPanel Grid.Column="1" >
             <Border BorderThickness="1,0,0,0" BorderBrush="#FFACACAC" />
             <Border DockPanel.Dock="Bottom" BorderThickness="0,1,0,0" BorderBrush="#FFACACAC">
                 <Grid Height="35">
@@ -49,7 +49,7 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Content="Save" Margin="5" IsDefault="True" Command="{Binding saveTaskCommand}"></Button>
                     <Button Grid.Column="1" Content="New" Margin="5" Command="{Binding newTaskCommand}"></Button>
-                    <Button Grid.Column="2" Content="Delete" Margin="5" Command="{Binding deleteTaskCommand}"></Button>
+                    <Button Grid.Column="2" Content="Delete" Margin="5" Command="{Binding deleteDetailTaskCommand}"></Button>
                 </Grid>
             </Border>
             <ScrollViewer VerticalScrollBarVisibility="Auto">

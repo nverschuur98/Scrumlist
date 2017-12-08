@@ -25,6 +25,7 @@ namespace Scrumlijst.ViewModels
         public ICommand saveTaskCommand { get; set; }
         public ICommand newTaskCommand { get; set; }
         public ICommand deleteTaskCommand { get; set; }
+        public ICommand deleteDetailTaskCommand { get; set; }
 
         //Binding Variables
         private Models.taskModel selectedTaskModel;
@@ -71,6 +72,7 @@ namespace Scrumlijst.ViewModels
             saveTaskCommand = new BaseCommand(SaveTask);
             newTaskCommand = new BaseCommand(NewTask);
             deleteTaskCommand = new BaseCommand(DeleteTask);
+            deleteDetailTaskCommand = new BaseCommand(DeleteDetailTask);
 
             SelectedTaskModel = new Models.taskModel();
         }
@@ -103,6 +105,23 @@ namespace Scrumlijst.ViewModels
         {
             try
             {
+                sH.deleteTask(SelectedTaskModel);
+            }
+            catch (Exception e)
+            {
+                string messageBoxText = "There was an error while trying to delete this task.\n\n" + e.Message;
+                string caption = "Error";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+        }
+
+        //Delete the selected detail task from the database
+        private void DeleteDetailTask(object obj)
+        {
+            try
+            {
                 sH.deleteTask(SelectedTaskModelEdit);
             }
             catch (Exception e)
@@ -118,14 +137,13 @@ namespace Scrumlijst.ViewModels
         //Create a new task
         private void NewTask(object obj)
         {
-            if(SelectedTaskModelEdit == null || SelectedTaskModelEdit.id == 0)
-            {
-                Models.taskModel newTask = new Models.taskModel();
-                newTask.id = dH.returnLastTaskId() + 1;
-                newTask.assignDate = DateTime.Now;
+            
+            Models.taskModel newTask = new Models.taskModel();
+            newTask.id = dH.returnLastTaskId() + 1;
+            newTask.assignDate = DateTime.Now;
 
-                SelectedTaskModelEdit = newTask;
-            }
+            SelectedTaskModelEdit = newTask;
+               
             /*else
             {
                 try

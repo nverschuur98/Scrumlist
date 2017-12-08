@@ -18,6 +18,8 @@
     -You can save a task/sprint by pressing the save button in the detail screen
     -You can delete a task/sprint by pressing the delete button in the detail sceen
     -A startup screen has been added
+    -You can now delete a selected task by pressing the delete key on your keyboard
+    -It's now possible to create a new task from the detail screen
     
     #FIXED#
     -not included

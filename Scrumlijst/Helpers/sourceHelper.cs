@@ -356,7 +356,16 @@ namespace Scrumlijst.Helpers
             {
                 string sql = $"UPDATE tasks SET name=\"{task.name}\", assignBy=\"{task.assignBy}\", assignTo=\"{task.assignTo}\", description=\"{task.description}\", discipline=\"{task.disciplineID}\", assignDate=\"{task.assignDate.ToString()}\", state=\"{task.state}\", sprintId=\"{task.sprintID}\" WHERE id={task.id}";
                 SQLiteCommand command = new SQLiteCommand(sql, Windows.MainWindow.conn);
-                command.ExecuteNonQuery();
+                var result = command.ExecuteNonQuery();
+                
+
+                if(result == 0)
+                {
+                    //throw new Exception($"There was no data found with id: {task.id}");
+                    Windows.MainWindow.conn.Close();
+                    writeNewTask(task);
+
+                }
             }
             catch(Exception e) //If for some reason the execution fails...
             {
@@ -391,6 +400,18 @@ namespace Scrumlijst.Helpers
         /// <param name="task"></param>
         public void deleteTask(Models.taskModel task)
         {
+            string messageBoxText = "Are you sure you want to delete the selected item?";
+            string caption = "Delete Confirmation";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxImage icon = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBoxResult.No;
+            MessageBoxResult endResult = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon, result);
+
+            if (endResult == MessageBoxResult.No)
+            {
+                return;
+            }
+
             Windows.MainWindow.conn.Open();
             
             try
@@ -404,10 +425,10 @@ namespace Scrumlijst.Helpers
             }
             catch(Exception e)
             {
-                string messageBoxText = "There was no task selected, please select a task.\n\n" + e.Message;
-                string caption = "Error";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
+                messageBoxText = "There was no task selected, please select a task.\n\n" + e.Message;
+                caption = "Error";
+                button = MessageBoxButton.OK;
+                icon = MessageBoxImage.Error;
                 System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
@@ -422,6 +443,19 @@ namespace Scrumlijst.Helpers
         /// <param name="Sprint"></param>
         public void deleteSprint(Models.sprintModel sprint)
         {
+            string messageBoxText = "Are you sure you want to delete the selected item?";
+            string caption = "Delete Confirmation";
+            MessageBoxButton button = MessageBoxButton.YesNo;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            System.Windows.MessageBoxOptions option = System.Windows.MessageBoxOptions.RightAlign;
+            MessageBoxResult result = MessageBoxResult.No;
+            MessageBoxResult endResult = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon, result, option);
+
+            if (endResult == MessageBoxResult.No)
+            {
+                return;
+            }
+
             Windows.MainWindow.conn.Open();
             string sql = $"DELETE FROM sprints WHERE id={sprint.id}";
             SQLiteCommand command = new SQLiteCommand(sql, Windows.MainWindow.conn);
@@ -434,10 +468,10 @@ namespace Scrumlijst.Helpers
             }
             catch (Exception e)
             {
-                string messageBoxText = "There was no sprint selected, please select a sprint.\n\n" + e.Message;
-                string caption = "Error";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
+                messageBoxText = "There was no sprint selected, please select a sprint.\n\n" + e.Message;
+                caption = "Error";
+                button = MessageBoxButton.OK;
+                icon = MessageBoxImage.Error;
                 System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
