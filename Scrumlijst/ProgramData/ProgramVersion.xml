@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<versions>
+  <version type="Development">
+    <name>v0.0.0.1</name>
+    <description>
+    This is one of the first development builds. This version already includes a basic set of features.
+    We will see this as the starting point for the program.
+    </description>
+  </version>
+  <version type="Development" current="true">
+    <name>v0.0.0.2</name>
+    <description>
+    This is one of the first development builds. This version already includes a basic set of features.
+    
+    #NEW#
+    -The detail screen is now available on the task screen aswell
+    -Double clicking a task/sprint will load the data into the detail screen
+    -You can save a task/sprint by pressing the save button in the detail screen
+    -You can delete a task/sprint by pressing the delete button in the detail sceen
+    -A startup screen has been added
+    
+    #FIXED#
+    -not included
+    </description>
+  </version>
+</versions>

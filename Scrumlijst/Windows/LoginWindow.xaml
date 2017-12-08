@@ -1,0 +1,33 @@
+﻿<Fluent:RibbonWindow x:Class="Scrumlijst.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scrumlijst.Windows"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        mc:Ignorable="d"
+        Title="Login Scrum Manager" Height="200" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+    <Fluent:RibbonWindow.Background>
+        <ImageBrush ImageSource="/Scrumlijst;component/Images/Background.jpg" Stretch="UniformToFill"/>
+    </Fluent:RibbonWindow.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Foreground="#FF303030" Grid.Row="0" Grid.Column="0" Margin="10" FontWeight="Bold">Name</Label>
+        <TextBox VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="10"/>
+
+        <Label Foreground="#FF303030" Grid.Row="1" Grid.Column="0" Margin="10" FontWeight="Bold">Password</Label>
+        <PasswordBox VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="10"/>
+
+        <Button Grid.Row="3" Grid.Column="1" Margin="10" IsDefault="True" Click="Login_Click">Login</Button>
+    </Grid>
+</Fluent:RibbonWindow>

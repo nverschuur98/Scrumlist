@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Scrumlijst.Views.StartupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Scrumlijst.Views"
+             xmlns:ViewModels="clr-namespace:Scrumlijst.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="600"
+             d:DataContext="{d:DesignInstance ViewModels:SprintViewModel}">
+
+    <StackPanel>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            Welcome to the scrum manager, please start by selecting a database, or create one.
+        </Label>
+    </StackPanel>
+</UserControl>
